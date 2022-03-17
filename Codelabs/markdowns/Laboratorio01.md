@@ -92,3 +92,135 @@ Es indispensable llevar un registro del año y el ciclo en que se impartirá dic
 <li>Debemos incluir tantos atributos como sea necesario para cumplir los <b>requerimientos del sistema</b>, siempre y cuando aporten un valor a la base de datos.</li>
 <li>Todos los elementos de un diagrama ER se unen con otros por medio de <b>líneas rectas</b>. Ya sean atributos a entidades, atributos compuestos a sus componentes o entidades a relaciones.</li>
 </aside>
+
+## Restricciones Estructurales
+Duration: 0:01:00
+### Atributos clave
+
+En el diagrama anterior se puede observar que hay ciertos atributos subrayados, esto significa que es un **atributo clave**. Al pensar, por ejemplo, en la entidad ALUMNO (Carné, Nombres, Apellidos, Edad, Carrera), su representación en el modelo ER sería así:
+
+![test](./img/Laboratorio01/diagram2.PNG)
+
+Y visto en forma de tabla sería así
+
+![test](./img/Laboratorio01/tabla.PNG)
+
+Seguramente notó que los campos en rojo son datos repetidos, pero, si observan, ningún valor del atributo Carné se repite, y tampoco debería hacerlo, pues es el **atributo clave** o, dicho de otra manera, el **identificador único** para cada alumno. Por ejemplo, para las personas salvadoreñas mayores de edad, el atributo clave sería el DUI.
+
+**NOTA:** Hay entidades que pueden tener más de un atributo que pueden funcionar como atributo clave.
+
+Las restricciones estructurales son **herramientas conceptuales** que ayudan a responder preguntas que pueden surgir durante el diseño de la base de datos. Por ejemplo, al relacionar las entidades ALUMNO y MATERIA, uno se podría preguntar: ¿Un alumno puede cursar muchas materias?, ¿Una materia puede ser cursada por muchos alumnos?, ¿Puede un alumno no cursar ninguna materia y seguir siendo alumno?, etc.
+
+## Restricciones de cardinalidad
+Duration: 0:01:00
+
+Se refiere al número máximo de ocurrencias que una entidad puede tener con otra entidad con la cual esté relacionada. Los posibles tipos de cardinalidad son **1:1, 1:N, N:1, M:N** también conocido como **N:N**).
+
+**Uno a Uno (1:1)**
+En este ejemplo particular, DIRIGE representa la relación de las entidades EMPLEADO y DEPARTAMENTO, indicando que, en algún punto, un empleado puede administrar máximo un departamento, y que un departamento solo puede tener un administrador. También cabe destacar, que no necesariamente todos los empleados serán administradores de algún departamento.
+
+![test](./img/Laboratorio01/diagram3.PNG)
+
+**Uno a muchos (1:N)**
+En este ejemplo, un departamento puede gestionar varios proyectos, pero cada proyecto solo puede ser gestionado por un departamento.
+
+![test](./img/Laboratorio01/diagram4.PNG)
+
+**Muchos a uno (N:1)**
+Aquí se indica que un empleado puede trabajar únicamente para un departamento, pero un departamento puede tener varios empleados. Si observamos, este en realidad es muy similar al anterior, pero en el sentido contrario.
+
+![test](./img/Laboratorio01/diagram5.PNG)
+
+**Muchos a muchos (M:N)**
+Aquí se indica que un empleado puede trabajar en muchos proyectos y que en un proyecto pueden trabajar varios empleados.
+
+![test](./img/Laboratorio01/diagram6.PNG)
+
+## Restricciones de participación
+Duration: 0:01:00
+
+Específica si la existencia de una entidad depende de un tipo de relación con otra entidad. Se denomina **participación total** cuando cada ocurrencia de la entidad A participa, al menos, en una relación de R con una ocurrencia de la entidad B. Por el contrario, cuando existe, al menos, una ocurrencia de A que **NO** PARTICIPA en alguna relación R con una ocurrencia de la entidad B, se le conoce como **participación parcial**. Observe el siguiente ejemplo para comprender mejor:
+
+**Ejemplo:** En la universidad todos los estudiantes activos reciben materias de sus carreras. Al haber cursado la materia y al haber cumplido ciertos requisitos, estos pueden impartir dicha materia como instructores.
+
+![test](./img/Laboratorio01/diagram7.PNG)
+
+## Mínimos y máximos
+Duration: 0:01:00
+
+En una relación entre dos entidades los mínimos representan la participación (total o parcial) y los máximos la cardinalidad (1:1, 1:N, N:1, N:N).
+
+Los mínimos pueden tomar los valores cero o uno (0 o 1), mientras que los máximos pueden ser uno o muchos (1 o N). Por último, la cardinalidad se obtiene cruzando los valores máximos.
+
+![test](./img/Laboratorio01/diagram8.PNG)
+
+¿Cómo encontrar estos valores? Existen dos preguntas que facilitan esta tarea.
+
+**MIN (participación)**
+¿**Tiene** A que estar relacionado con algún B? (nótese que tiene demuestra obligación)
+**• Sí: min = 1** | Participación total
+**• No: min = 0 |** Participación parcial
+
+MAX (cardinalidad)
+¿**Puede** A estar relacionado con más de un B? (nótese que puede demuestra elección)
+**• Sí: max = N**
+**• No: max = 1**
+
+## Entidades fuertes y débiles
+Duration: 0:01:00
+
+En una relación entre dos entidades (A y B) decimos que la entidad B es débil con respecto a la entidad A, si la entidad B depende de que exista A primero. Las entidades débiles se representan con un doble rectángulo.
+
+Ocupe el siguiente ejemplo para asimilarlo mejor: “Un cliente solicita un préstamo”. Para solicitar el préstamo, el cliente tuvo que existe primero. Un préstamo no se puede asignar al vacío, es por eso que el préstamo existe cuando el cliente lo solicita.
+
+![test](./img/Laboratorio01/diagram9.PNG)
+
+También existe una pregunta que nos facilita identificar entidades débiles o fuertes. Si se coloca sobre la entidad A y se pregunta **¿Necesita existir B para que exista A?**
+
+**• SÍ**: A es débil con respecto a B
+**• NO:** A es fuerte con respecto a B
+
+Ahora se coloca sobre la entidad B y se hace la misma pregunta.
+
+**• SÍ:** B es débil con respecto a A.
+**• NO:** B es fuerte con respecto a A.
+
+## Entidad-Relación Extendido
+Duration: 0:01:00
+
+También conocido como Entidad-Relación Ajustado, surge, por supuesto, del modelo Entidad-Relación presentado anteriormente, con la diferencia que, para este, se debe definir las 
+**restricciones estructurales e identificar entidades fuertes y débiles.**
+
+Así se vería el ER extendido del ejemplo de la biblioteca:
+
+![test](./img/Laboratorio01/diagram10.PNG)
+
+Analizando algunas cosas que el diagrama anterior representa:
+• Si un escritor está en mi BD significa que tengo AL MENOS UN libro de ese escritor. No tendría lógica tener registrado un escritor del cual no tengo ningún libro.
+• En nuestra BD pueden existir usuarios que NUNCA hayan prestado un libro.
+• Igualmente pueden existir libros que NUNCA hayan sido prestados por alguien.
+
+## Entidades fuertes y débiles
+
+Suponga que una importante compañía aérea le ha encargado el diseño de su base de datos. Realice el desarrollo de la solución tal como lo hicimos en el ejemplo (paso a paso). La descripción del escenario es el siguiente:
+
+Una importante compañía aérea necesita una base de datos para registrar la información de sus vuelos.
+
+Los vuelos están caracterizados por un Id, la fecha y los aeropuertos de origen y destino.
+
+Cada vuelo es realizado por un avión. Los aviones tienen una matrícula que los identifica, el fabricante, un modelo e información sobre su capacidad (número máximo de pasajeros) y autonomía de vuelo (en horas).
+
+La tripulación asignada al vuelo está formada por el personal de la propia compañía. De cada trabajador se conoce su id, su nombre y su categoría profesional, así como el puesto que  cupa en cada vuelo en particular.
+
+Por último, para cada vuelo, se almacena la lista completa de pasajeros, con su DNI, el nombre, el asiento que ocupa y su clase (turista, primera o business).
+
+**Autonomía de vuelo**: cuanto tiempo el avión puede pasar en el aire sin caerse Definir:
+
+• Entidades
+• Relaciones
+• Atributos
+• Entidades fuertes y débiles
+• Cardinalidad mínima, máxima y general
+• Participación
+
+![test](./img/Laboratorio01/avion.PNG)
