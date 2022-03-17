@@ -1,0 +1,28 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-03-16T10:21:08-06:00",
+  "id": "laboratorio-01",
+  "duration": 4,
+  "title": "Modelo Entidad - Relación",
+  "summary": "Laboratorio sobre el modelo entidad relación",
+  "source": ".\\markdowns\\Laboratorio01.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "modelo",
+    "diseño"
+  ],
+  "tags": [
+    "entity",
+    "guide",
+    "relationship",
+    "web"
+  ],
+  "feedback": "https://google.com",
+  "url": "laboratorio-01"
+}
